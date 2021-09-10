@@ -6,23 +6,32 @@ use yew::prelude::*;
 use crate::counter::Model as Counter;
 
 struct Model {
-    _link: ComponentLink<Self>,
+    link: ComponentLink<Self>,
+    init_values: Vec<i64>,
 }
 
-enum Msg {}
+enum Msg {
+    AddCounter,
+}
 
 impl yew::Component for Model {
     type Message = Msg;
     type Properties = ();
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         Self {
-            _link: link,
+            link,
+            init_values: Vec::new(),
         }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-        // match msg {}
-        true
+    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+        let nxt_val = self.init_values.last().unwrap_or(&-1) + 1;
+        match msg {
+            Msg::AddCounter => {
+                self.init_values.push(nxt_val);
+                true
+            }
+        }
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
@@ -35,7 +44,8 @@ impl yew::Component for Model {
     fn view(&self) -> Html {
         html! {
             <div>
-                {for (0..3).map(|i| html! {<Counter init_value=i />})}
+                <button onclick=self.link.callback(|_| Msg::AddCounter)>{"add"}</button>
+                {for (&self.init_values).into_iter().map(|&i| html! {<Counter init_value=i />})}
             </div>
         }
     }

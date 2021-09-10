@@ -2,7 +2,7 @@ use yew::prelude::*;
 
 pub struct Model {
     link: ComponentLink<Self>,
-    props: Props,
+    _props: Props,
     value: i64,
 }
 
@@ -25,7 +25,7 @@ impl Component for Model {
         let init_value = props.init_value;
         Self {
             link,
-            props,
+            _props: props,
             value: init_value,
         }
     }
