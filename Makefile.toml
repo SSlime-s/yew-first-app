@@ -1,0 +1,19 @@
+[tasks.build]
+command = "wasm-pack"
+args = [
+  "build",
+  "--target",
+  "web",
+  "--out-name",
+  "wasm",
+  "--out-dir",
+  "./static",
+]
+
+[tasks.hot-build]
+command="cargo"
+args=["watch", "-x", "make", "build"]
+
+[tasks.serve]
+command = "miniserve"
+args = ["./static", "--index", "index.html"]
