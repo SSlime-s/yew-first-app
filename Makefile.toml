@@ -12,7 +12,7 @@ args = [
 
 [tasks.hot-build]
 command="cargo"
-args=["watch", "-x", "make", "build"]
+args=["watch", "-x", "make build"]
 
 [tasks.serve]
 command = "miniserve"
