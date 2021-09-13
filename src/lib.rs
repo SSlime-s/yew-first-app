@@ -1,9 +1,11 @@
 mod counter;
+mod todo;
 
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
 
 use crate::counter::Model as Counter;
+use crate::todo::Model as TodoList;
 
 struct Model {
     link: ComponentLink<Self>,
@@ -46,6 +48,8 @@ impl yew::Component for Model {
             <div>
                 <button onclick=self.link.callback(|_| Msg::AddCounter)>{"add"}</button>
                 {for (&self.init_values).into_iter().map(|&i| html! {<Counter init_value=i />})}
+
+                <TodoList />
             </div>
         }
     }
