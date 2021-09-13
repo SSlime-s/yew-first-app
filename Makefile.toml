@@ -17,3 +17,14 @@ args=["watch", "-x", "make build"]
 [tasks.serve]
 command = "miniserve"
 args = ["./static", "--index", "index.html"]
+
+[tasks.lint]
+install_crate = "clippy"
+command = "cargo"
+args = ["clippy"]
+dependencies = ["format"]
+
+[tasks.format]
+install_crate = "rustfmt"
+command = "cargo"
+args = ["fmt"]
