@@ -81,7 +81,7 @@ impl Component for Model {
                 <button onclick=self.link.callback(|_| Msg::AddTask)>{"add"}</button>
 
                 <div>
-                    {for (&self.task_list).into_iter().enumerate().map(|(i, info)| html!{
+                    {for (&self.task_list).iter().enumerate().map(|(i, info)| html!{
                         <TaskCard
                             title=info.title.clone()
                             content=info.content.clone()

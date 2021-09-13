@@ -47,7 +47,7 @@ impl yew::Component for Model {
         html! {
             <div>
                 <button onclick=self.link.callback(|_| Msg::AddCounter)>{"add"}</button>
-                {for (&self.init_values).into_iter().map(|&i| html! {<Counter init_value=i />})}
+                {for (&self.init_values).iter().map(|&i| html! {<Counter init_value=i />})}
 
                 <TodoList />
             </div>
