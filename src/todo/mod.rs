@@ -2,7 +2,7 @@ mod card;
 
 use yew::prelude::*;
 
-use self::card::Model as Card;
+use self::card::Model as TaskCard;
 
 pub struct Model {
     link: ComponentLink<Self>,
@@ -82,7 +82,11 @@ impl Component for Model {
 
                 <div>
                     {for (&self.task_list).into_iter().enumerate().map(|(i, info)| html!{
-                        <Card title=info.title.clone() content=info.content.clone() onremove=self.link.callback(move |_| Msg::RemoveTask(i)) />
+                        <TaskCard
+                            title=info.title.clone()
+                            content=info.content.clone()
+                            onremove=self.link.callback(move |_| Msg::RemoveTask(i))
+                        />
                     })}
                 </div>
             </div>
