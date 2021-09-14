@@ -1,6 +1,7 @@
 mod counter;
 mod todo;
 
+use stylist::Style;
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
 
@@ -45,7 +46,7 @@ impl yew::Component for Model {
 
     fn view(&self) -> Html {
         html! {
-            <div>
+            <div class=css("text-align: center;")>
                 <button onclick=self.link.callback(|_| Msg::AddCounter)>{"add"}</button>
                 {for (&self.init_values).iter().map(|&i| html! {<Counter init_value=i />})}
 
@@ -58,4 +59,8 @@ impl yew::Component for Model {
 #[wasm_bindgen(start)]
 pub fn run_app() {
     App::<Model>::new().mount_to_body();
+}
+
+pub fn css(msg: &str) -> Style {
+    Style::new(msg).unwrap()
 }
