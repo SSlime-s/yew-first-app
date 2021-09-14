@@ -61,6 +61,6 @@ pub fn run_app() {
     App::<Model>::new().mount_to_body();
 }
 
-pub fn css(msg: &str) -> Style {
+pub fn css<'a>(msg: impl stylist::ast::IntoSheet<'a>) -> Style {
     Style::new(msg).unwrap()
 }
