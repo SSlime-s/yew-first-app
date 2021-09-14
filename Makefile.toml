@@ -1,4 +1,5 @@
 [tasks.build]
+install_crate = "wasm-pack"
 command = "wasm-pack"
 args = [
   "build",
@@ -11,10 +12,12 @@ args = [
 ]
 
 [tasks.hot-build]
+install_crate = "cargo-watch"
 command="cargo"
 args=["watch", "-x", "make build"]
 
 [tasks.serve]
+install_crate = "miniserve"
 command = "miniserve"
 args = ["./static", "--index", "index.html"]
 
